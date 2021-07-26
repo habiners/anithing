@@ -1,0 +1,43 @@
+import 'package:http/http.dart';
+
+import '../controllers/jikan_controller.dart';
+// Fetch endpoints
+
+// Zath ==============================
+// 1. Anime Information: /anime/{int:id}
+// Sample: https://api.jikan.moe/v3/anime/21/ - Gets One Piece Anime Info
+
+
+
+// 2. Anime Episodes: /anime/{int:id}/episode
+// Sample: https://api.jikan.moe/v3/anime/21/episodes
+// - Gets One Piece Anime Episodes
+
+
+
+// Ed ==============================
+// 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D
+// Sample: https://api.jikan.moe/v3/manga/1 - Gets Monster Manga Info
+
+
+
+// 4. Top Manga & Anime (with multiple pages): https://api.jikan.moe/v3/top/%7Bstring:anime%7C%7Cmanga%7D/%7Bint:page%7D
+// Samples:
+// https://api.jikan.moe/v3/top/anime/1/ - Gets top anime, page 1
+// https://api.jikan.moe/v3/top/manga/2/ - Gets top manga, page 2
+
+
+
+// Javin ==============================
+// 5. Browse Anime/Manga By Genre https://api.jikan.moe/v3/genre/%7Bstring:anime%7C%7Cmanga%7D/%7Bint:page%7D
+// Sample:
+// https://api.jikan.moe/v3/genre/anime/1 - Gets anime with "Action" Genre, page 1
+// https://api.jikan.moe/v3/genre/manga/2 - Gets anime with "Adventure" Genre, page 2
+
+
+
+// 6. Search Anime and Manga (LISOD NI)
+// Unknown
+
+
+
