@@ -1,3 +1,4 @@
+import 'package:anithing/models/anime.dart';
 import 'package:http/http.dart';
 
 import '../controllers/jikan_controller.dart';
@@ -6,7 +7,9 @@ import '../controllers/jikan_controller.dart';
 // Zath ==============================
 // 1. Anime Information: /anime/{int:id}
 // Sample: https://api.jikan.moe/v3/anime/21/ - Gets One Piece Anime Info
-
+Anime fetchAnime(int animeId) {
+  return Anime();
+}
 
 
 // 2. Anime Episodes: /anime/{int:id}/episode
