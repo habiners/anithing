@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import './controllers/jikan_controller.dart';
 import './screens/home.dart';
+import './router/routes.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -15,11 +16,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'AniThing',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Home(),
+      initialRoute: homeRoute,
+      getPages: [
+        GetPage(name: homeRoute, page: () => Home()),
+        GetPage(name: animeDetailsRoute, page: () => Home()),
+        GetPage(name: animeEpisodesRoute, page: () => Home()),
+        GetPage(name: mangaDetailsRoute, page: () => Home()),
+        GetPage(name: topAnimeRoute, page: () => Home()),
+        GetPage(name: topMangaRoute, page: () => Home()),
+        GetPage(name: browseGenreRoute, page: () => Home()),
+      ],
     );
   }
 }
