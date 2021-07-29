@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import './controllers/jikan_controller.dart';
 import './screens/home.dart';
+import './screens/search_results.dart';
 import './router/routes.dart';
 
 void main() {
@@ -16,19 +17,21 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'AniThing',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: homeRoute,
       getPages: [
-        GetPage(name: homeRoute, page: () => Home()),
-        GetPage(name: animeDetailsRoute, page: () => Home()),
-        GetPage(name: animeEpisodesRoute, page: () => Home()),
-        GetPage(name: mangaDetailsRoute, page: () => Home()),
-        GetPage(name: topAnimeRoute, page: () => Home()),
-        GetPage(name: topMangaRoute, page: () => Home()),
-        GetPage(name: browseGenreRoute, page: () => Home()),
+        GetPage(name: homeRoute, page: () => HomeScreen()),
+        GetPage(name: animeDetailsRoute, page: () => HomeScreen()),
+        GetPage(name: animeEpisodesRoute, page: () => HomeScreen()),
+        GetPage(name: mangaDetailsRoute, page: () => HomeScreen()),
+        GetPage(name: topAnimeRoute, page: () => HomeScreen()),
+        GetPage(name: topMangaRoute, page: () => HomeScreen()),
+        GetPage(name: browseGenreRoute, page: () => HomeScreen()),
+        GetPage(name: searchResultRoute, page: () => SearchResultsScreen()),
       ],
     );
   }
