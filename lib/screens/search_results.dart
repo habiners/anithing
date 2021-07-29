@@ -15,8 +15,7 @@ class SearchResultsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: ScaffoldAppBar(
-        appBar: AppBar(),
+      appBar: createScaffoldAppBar(
         actions: [],
         title: "${jikanController.mode}: \"${jikanController.searchQueryTextController.text}\"",
       ),

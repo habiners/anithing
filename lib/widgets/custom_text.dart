@@ -5,6 +5,7 @@ class CustomText extends StatelessWidget {
     Key? key,
     required this.text,
     this.color = Colors.black,
+    this.fontFamily = 'Roboto',
     this.size = 16,
     this.weight = FontWeight.normal,
     this.textAlign = TextAlign.left,
@@ -14,6 +15,7 @@ class CustomText extends StatelessWidget {
 
   final String text;
   final Color color;
+  final String fontFamily;
   final double size;
   final FontWeight weight;
   final TextAlign textAlign;
@@ -25,6 +27,7 @@ class CustomText extends StatelessWidget {
       text,
       style: TextStyle(
         color: color,
+        fontFamily: fontFamily,
         fontSize: size,
         fontWeight: weight,
       ),

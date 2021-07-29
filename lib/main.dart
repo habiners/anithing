@@ -1,3 +1,4 @@
+import 'package:anithing/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

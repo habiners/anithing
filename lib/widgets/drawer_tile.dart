@@ -1,5 +1,8 @@
+import 'package:anithing/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'custom_text.dart';
 
 class DrawerTile extends StatelessWidget {
   const DrawerTile({
@@ -8,25 +11,25 @@ class DrawerTile extends StatelessWidget {
     required this.title,
     required this.destinationRoute,
     this.arguments,
+    this.active = false,
   }) : super(key: key);
   final IconData iconData;
   final String title;
   final String destinationRoute;
   final dynamic arguments;
+  final bool active;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: Icon(iconData, color: Colors.black),
-      title: Text(
-        title,
-        style: TextStyle(
-          // fontFamily: "RobotoCondensed",
-          fontSize: 20.0,
-          fontWeight: FontWeight.bold,
-        ),
+      tileColor: active ? blackCoffeeColor : royalBlueLightColor,
+      leading: Icon(iconData, color: mintCreamColor),
+      title: CustomText(
+        text: title,
+        color: mintCreamColor,
+        size: 20.0,
+        weight: FontWeight.bold,
       ),
-      // selected: true,
       onTap: () => Get.offNamed(destinationRoute, arguments: arguments),
     );
   }
