@@ -1,3 +1,4 @@
+import 'package:anithing/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +38,13 @@ class Home extends StatelessWidget {
               ),
             ),
             // Test search
-            ElevatedButton(onPressed: () => jikanController.searchQuery(), child: Text("Search")),
+            ElevatedButton(
+                onPressed: () async {
+                  await jikanController.searchQuery();
+                  // TODO: Add Manga route
+                  if (jikanController.mode.value == "Anime") Get.toNamed(animeSearchRoute);
+                },
+                child: Text("Search")),
             // Toggle
             Container(
               child: Row(

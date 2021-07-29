@@ -1,3 +1,4 @@
+import 'package:anithing/screens/anime_search.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: topAnimeRoute, page: () => Home()),
         GetPage(name: topMangaRoute, page: () => Home()),
         GetPage(name: browseGenreRoute, page: () => Home()),
+        GetPage(name: animeSearchRoute, page: () => AnimeSearch()),
       ],
     );
   }
