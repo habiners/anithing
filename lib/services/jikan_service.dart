@@ -1,5 +1,6 @@
 import 'package:anithing/models/anime.dart';
 import 'package:anithing/models/anime_search_result.dart';
+import 'package:anithing/models/manga_search_result.dart';
 import 'package:http/http.dart' as http;
 
 import '../controllers/jikan_controller.dart';
@@ -34,15 +35,14 @@ Anime fetchAnime(int animeId) {
 
 // 6. Search Anime and Manga (LISOD NI)
 // Sample: https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1
-Future<List<AnimeSearchResult>> fetchSearchQuery(String searchQueryParameters) async {
+Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
   try {
     Uri uri = Uri.parse(apiBasePath + '/search/' + searchQueryParameters);
     print(uri.toString());
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
-      List<AnimeSearchResult> result = listAnimeSearchResultFromJsonString(jsonString);
-      return result;
+      return mode == "Anime" ? listAnimeSearchResultFromJsonString(jsonString) : listMangaSearchResultFromJsonString(jsonString);
     } else {
       return [];
     }

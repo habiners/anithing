@@ -5,4 +5,4 @@ const String mangaDetailsRoute = '/manga';
 const String topAnimeRoute = '/top-anime';
 const String topMangaRoute = '/top-manga';
 const String browseGenreRoute = '/browse-genre';
-const String animeSearchRoute = '/anime-search';
+const String searchResultRoute = '/search-results';

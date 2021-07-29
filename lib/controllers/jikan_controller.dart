@@ -1,8 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../constants/genres.dart';
 import '../models/anime_search_result.dart';
+import '../models/manga_search_result.dart';
 import '../models/anime.dart';
 import '../models/manga.dart';
 import '../services/jikan_service.dart';
@@ -20,6 +21,7 @@ class JikanController extends GetxController {
   RxList<bool> selectedAnimeGenres = List<bool>.filled(AnimeGenres.values.length, false).obs;
   RxList<bool> selectedMangaGenres = List<bool>.filled(MangaGenres.values.length, false).obs;
   RxList<AnimeSearchResult> animeSearchResults = <AnimeSearchResult>[].obs;
+  RxList<MangaSearchResult> mangaSearchResults = <MangaSearchResult>[].obs;
 
   void getAnime(int animeId) {
     Anime retrievedAnime = fetchAnime(animeId);
@@ -52,7 +54,10 @@ class JikanController extends GetxController {
     }
     searchQuery += genresQuery;
     print(searchQuery);
-    animeSearchResults.value = await fetchSearchQuery(searchQuery);
-    print(animeSearchResults);
+
+    if (mode.value == "Anime")
+      animeSearchResults.value = await fetchSearchQuery(searchQuery, "Anime") as List<AnimeSearchResult>;
+    else
+      mangaSearchResults.value = await fetchSearchQuery(searchQuery, "Manga") as List<MangaSearchResult>;
   }
 }

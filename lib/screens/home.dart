@@ -7,8 +7,8 @@ import '../constants/genres.dart';
 import '../widgets/scaffold_appbar.dart';
 import '../widgets/scaffold_drawer.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +41,7 @@ class Home extends StatelessWidget {
             ElevatedButton(
                 onPressed: () async {
                   await jikanController.searchQuery();
-                  // TODO: Add Manga route
-                  if (jikanController.mode.value == "Anime") Get.toNamed(animeSearchRoute);
+                  Get.toNamed(searchResultRoute);
                 },
                 child: Text("Search")),
             // Toggle
@@ -66,7 +65,7 @@ class Home extends StatelessWidget {
                     ),
                     onTap: () => jikanController.mode.value = "Anime",
                   ),
-                  Container(width: 2, height: 30, color: Colors.black),
+                  Container(width: 2, height: 30, color: Colors.white),
                   InkWell(
                     child: Container(
                       height: 30,
