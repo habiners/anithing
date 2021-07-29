@@ -25,17 +25,19 @@ class Home extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1, vertical: 10),
               child: TextField(
-                controller: jikanController.searchQueryController,
+                controller: jikanController.searchQueryTextController,
                 keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                   labelText: "Input ${jikanController.mode} title",
                   icon: Icon(Icons.search),
                 ),
                 onTap: () {
-                  print(jikanController.searchQueryController.text);
+                  print(jikanController.searchQueryTextController.text);
                 },
               ),
             ),
+            //Test search
+            ElevatedButton(onPressed: () => jikanController.searchQuery(), child: Text("Search")),
             // Toggle
             Container(
               child: Row(
@@ -43,8 +45,8 @@ class Home extends StatelessWidget {
                 children: [
                   InkWell(
                     child: Container(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width * 0.10,
+                      height: 30,
+                      width: 80,
                       child: Center(child: Text("Anime")),
                       decoration: BoxDecoration(
                         color: jikanController.mode.value == "Anime" ? Colors.blue : Colors.white,
@@ -57,11 +59,11 @@ class Home extends StatelessWidget {
                     ),
                     onTap: () => jikanController.mode.value = "Anime",
                   ),
-                  Container(width: 2, height: 40, color: Colors.black),
+                  Container(width: 2, height: 30, color: Colors.black),
                   InkWell(
                     child: Container(
-                      height: 40,
-                      width: MediaQuery.of(context).size.width * 0.10,
+                      height: 30,
+                      width: 80,
                       child: Center(child: Text("Manga")),
                       decoration: BoxDecoration(
                         color: jikanController.mode.value == "Manga" ? Colors.blue : Colors.white,
@@ -82,14 +84,30 @@ class Home extends StatelessWidget {
             Expanded(
               child: Padding(
                 padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.1),
-                child: ListView(
-                  children: (jikanController.mode.value == "Anime" ? AnimeGenres.values : MangaGenres.values)
-                      .map(
-                        (genre) => ListTile(
-                          title: Text(genre.toString().split('.').last.replaceAll('_', ' ')),
-                        ),
-                      )
-                      .toList(),
+                child: Wrap(
+                  children: jikanController.mode.value == "Anime"
+                      ? AnimeGenres.values
+                          .map(
+                            (AnimeGenres genre) => FilterChip(
+                              label: Text(genre.toString().split('.').last.replaceAll('_', ' ')),
+                              selected: jikanController.selectedAnimeGenres[genre.index],
+                              onSelected: (boolValue) {
+                                jikanController.selectedAnimeGenres[genre.index] = boolValue;
+                              },
+                            ),
+                          )
+                          .toList()
+                      : MangaGenres.values
+                          .map(
+                            (MangaGenres genre) => FilterChip(
+                              label: Text(genre.toString().split('.').last.replaceAll('_', ' ')),
+                              selected: jikanController.selectedMangaGenres[genre.index],
+                              onSelected: (boolValue) {
+                                jikanController.selectedMangaGenres[genre.index] = boolValue;
+                              },
+                            ),
+                          )
+                          .toList(),
                 ),
               ),
             ),
