@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import './controllers/jikan_controller.dart';
 import './screens/home.dart';
-import 'screens/search_results.dart';
+import './screens/search_results.dart';
 import './router/routes.dart';
 
 void main() {
@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'AniThing',
       theme: ThemeData(
         primarySwatch: Colors.blue,

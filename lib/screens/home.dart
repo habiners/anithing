@@ -1,15 +1,16 @@
+import 'package:anithing/controllers/search_anime_controller.dart';
 import 'package:anithing/router/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../constants/controllers.dart';
 import '../constants/genres.dart';
 import '../widgets/scaffold_appbar.dart';
 import '../widgets/scaffold_drawer.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  HomeScreen({Key? key}) : super(key: key);
 
+  final SearchAnimeController jikanController = Get.put(SearchAnimeController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,8 +40,8 @@ class HomeScreen extends StatelessWidget {
             ),
             // Test search
             ElevatedButton(
-                onPressed: () async {
-                  await jikanController.searchQuery();
+                onPressed: () {
+                  jikanController.searchQuery();
                   Get.toNamed(searchResultRoute);
                 },
                 child: Text("Search")),
