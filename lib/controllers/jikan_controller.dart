@@ -1,10 +1,11 @@
-import 'package:anithing/constants/genres.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import '../services/jikan_service.dart';
 
+import '../constants/genres.dart';
+import '../models/anime_search_result.dart';
 import '../models/anime.dart';
 import '../models/manga.dart';
+import '../services/jikan_service.dart';
 
 class JikanController extends GetxController {
   static JikanController instance = Get.find();
@@ -15,16 +16,20 @@ class JikanController extends GetxController {
   Anime retrievedAnime = Anime();
 
   RxString mode = "Anime".obs;
-  TextEditingController searchQueryTextController = TextEditingController();
+  TextEditingController searchQueryTextController = TextEditingController(text: "Fate");
   RxList<bool> selectedAnimeGenres = List<bool>.filled(AnimeGenres.values.length, false).obs;
   RxList<bool> selectedMangaGenres = List<bool>.filled(MangaGenres.values.length, false).obs;
+  RxList<AnimeSearchResult> animeSearchResults = <AnimeSearchResult>[].obs;
 
   void getAnime(int animeId) {
     Anime retrievedAnime = fetchAnime(animeId);
   }
 
-  void searchQuery({int page = 1}) {
-    // TODO: Require search entry to be either empty or at least 3 Letters!
+  Future<void> searchQuery({int page = 1}) async {
+    if (searchQueryTextController.text.length < 3) {
+      Get.snackbar("Warning!", "Search query must contain at least 3 letters!");
+      return;
+    }
     print("=====Creation of Search Query=====");
     String searchQuery = "${mode.value == "Anime" ? "anime" : "manga"}?q=${searchQueryTextController.text}&page=$page";
     String genresQuery = "";
@@ -47,5 +52,7 @@ class JikanController extends GetxController {
     }
     searchQuery += genresQuery;
     print(searchQuery);
+    animeSearchResults.value = await fetchSearchQuery(searchQuery);
+    print(animeSearchResults);
   }
 }

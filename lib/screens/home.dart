@@ -36,7 +36,7 @@ class Home extends StatelessWidget {
                 },
               ),
             ),
-            //Test search
+            // Test search
             ElevatedButton(onPressed: () => jikanController.searchQuery(), child: Text("Search")),
             // Toggle
             Container(
