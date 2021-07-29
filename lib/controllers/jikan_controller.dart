@@ -1,3 +1,4 @@
+import 'package:anithing/router/routes.dart';
 import 'package:get/get.dart';
 
 import '../models/anime.dart';
@@ -11,6 +12,7 @@ class JikanController extends GetxController {
   RxList<Anime> animeList = <Anime>[].obs;
   RxList<Manga> mangaList = <Manga>[].obs;
   Anime retrievedAnime = Anime();
+  RxString activeRoute = homeRoute.obs;
 
   void getAnime(int animeId) {
     Anime retrievedAnime = fetchAnime(animeId);

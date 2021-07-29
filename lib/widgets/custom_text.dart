@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../constants/styles.dart';
+
 class CustomText extends StatelessWidget {
   const CustomText({
     Key? key,
     required this.text,
-    this.color = Colors.black,
-    this.fontFamily = 'Roboto',
+    this.color = mintCreamColor,
+    this.family = 'Roboto',
     this.size = 16,
     this.weight = FontWeight.normal,
     this.textAlign = TextAlign.left,
@@ -15,7 +17,7 @@ class CustomText extends StatelessWidget {
 
   final String text;
   final Color color;
-  final String fontFamily;
+  final String family;
   final double size;
   final FontWeight weight;
   final TextAlign textAlign;
@@ -27,7 +29,7 @@ class CustomText extends StatelessWidget {
       text,
       style: TextStyle(
         color: color,
-        fontFamily: fontFamily,
+        fontFamily: family,
         fontSize: size,
         fontWeight: weight,
       ),

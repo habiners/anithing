@@ -1,14 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/styles.dart';
 import '../models/manga_search_result.dart';
 import 'custom_text.dart';
 
 class MangaSearchTile extends StatelessWidget {
-  const MangaSearchTile({Key? key, required this.manga}) : super(key: key);
+  const MangaSearchTile({Key? key, required this.manga, this.odd = false}) : super(key: key);
 
   final MangaSearchResult manga;
-
+  final bool odd;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -17,7 +18,8 @@ class MangaSearchTile extends StatelessWidget {
       },
       child: Container(
         height: 120,
-        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        color: odd ? blackCoffeeColor : independenceColor,
+        margin: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,

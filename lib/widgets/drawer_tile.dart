@@ -1,3 +1,4 @@
+import 'package:anithing/constants/controllers.dart';
 import 'package:anithing/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +31,10 @@ class DrawerTile extends StatelessWidget {
         size: 20.0,
         weight: FontWeight.bold,
       ),
-      onTap: () => Get.offNamed(destinationRoute, arguments: arguments),
+      onTap: () {
+        jikanController.activeRoute.value = destinationRoute;
+        Get.offNamed(destinationRoute, arguments: arguments);
+      },
     );
   }
 }

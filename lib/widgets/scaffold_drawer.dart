@@ -1,9 +1,9 @@
-import 'package:anithing/constants/styles.dart';
-import 'package:anithing/router/routes.dart';
-import 'package:anithing/widgets/drawer_tile.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_text.dart';
+import '../constants/controllers.dart';
+import '../constants/styles.dart';
+import '../router/routes.dart';
+import 'drawer_tile.dart';
 
 class ScaffoldDrawer extends StatelessWidget {
   const ScaffoldDrawer({Key? key}) : super(key: key);
@@ -17,13 +17,6 @@ class ScaffoldDrawer extends StatelessWidget {
           children: [
             DrawerHeader(
               child: Center(
-                // child: CustomText(
-                //   text: "AniThing",
-                //   size: 42,
-                //   color: mintCreamColor,
-                //   fontFamily: 'Montserrat',
-                //   weight: FontWeight.bold,
-                // ),
                 child: RichText(
                   text: TextSpan(
                     style: TextStyle(
@@ -44,10 +37,30 @@ class ScaffoldDrawer extends StatelessWidget {
                 padding: EdgeInsets.all(0),
                 shrinkWrap: true,
                 children: [
-                  DrawerTile(title: "Home", iconData: Icons.home_outlined, destinationRoute: homeRoute, active: true),
-                  DrawerTile(title: "Browse Top Anime", iconData: Icons.tv, destinationRoute: topAnimeRoute),
-                  DrawerTile(title: "Browse Top Manga", iconData: Icons.book_outlined, destinationRoute: topMangaRoute),
-                  DrawerTile(title: "Browse by Genre", iconData: Icons.category_outlined, destinationRoute: browseGenreRoute),
+                  DrawerTile(
+                    title: "Home",
+                    iconData: Icons.home_outlined,
+                    destinationRoute: homeRoute,
+                    active: jikanController.activeRoute.value == homeRoute,
+                  ),
+                  DrawerTile(
+                    title: "Browse Top Anime",
+                    iconData: Icons.tv,
+                    destinationRoute: topAnimeRoute,
+                    active: jikanController.activeRoute.value == topAnimeRoute,
+                  ),
+                  DrawerTile(
+                    title: "Browse Top Manga",
+                    iconData: Icons.book_outlined,
+                    destinationRoute: topMangaRoute,
+                    active: jikanController.activeRoute.value == topMangaRoute,
+                  ),
+                  DrawerTile(
+                    title: "Browse by Genre",
+                    iconData: Icons.category_outlined,
+                    destinationRoute: browseGenreRoute,
+                    active: jikanController.activeRoute.value == browseGenreRoute,
+                  ),
                 ],
               ),
             ),

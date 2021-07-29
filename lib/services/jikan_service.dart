@@ -1,9 +1,8 @@
-import 'package:anithing/models/anime.dart';
-import 'package:anithing/models/anime_search_result.dart';
-import 'package:anithing/models/manga_search_result.dart';
 import 'package:http/http.dart' as http;
 
-import '../controllers/jikan_controller.dart';
+import '../models/anime.dart';
+import '../models/anime_search_result.dart';
+import '../models/manga_search_result.dart';
 
 // Fetch endpoints
 String apiBasePath = "https://api.jikan.moe/v3";
