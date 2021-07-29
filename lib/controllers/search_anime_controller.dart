@@ -9,7 +9,8 @@ import '../services/jikan_service.dart';
 class SearchAnimeController extends GetxController {
   RxString mode = "Anime".obs;
   RxBool isLoading = true.obs;
-  TextEditingController searchQueryTextController = TextEditingController(text: "Fate");
+  TextEditingController searchQueryTextController = TextEditingController();
+  // TextEditingController searchQueryTextController = TextEditingController(text: "Fate");
 
   RxList<bool> selectedAnimeGenres = List<bool>.filled(AnimeGenres.values.length, false).obs;
   RxList<bool> selectedMangaGenres = List<bool>.filled(MangaGenres.values.length, false).obs;

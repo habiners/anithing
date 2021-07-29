@@ -30,9 +30,9 @@ class MangaSearchResult {
   final bool publishing;
   final String synopsis;
   final String type;
-  final int chapters;
-  final int volumes;
-  final double score;
+  final num chapters;
+  final num volumes;
+  final num score;
 
   factory MangaSearchResult.fromJson(Map<String, dynamic> json) => MangaSearchResult(
         malId: json['mal_id'],

@@ -17,7 +17,6 @@ class AnimeSearchResult {
     required this.title,
     required this.airing,
     required this.synopsis,
-    required this.type,
     required this.episodes,
     required this.score,
     required this.rated,
@@ -29,9 +28,8 @@ class AnimeSearchResult {
   final String title;
   final bool airing;
   final String synopsis;
-  final String type;
-  final int episodes;
-  final double score;
+  final num episodes;
+  final num score;
   final String rated;
 
   factory AnimeSearchResult.fromJson(Map<String, dynamic> json) => AnimeSearchResult(
@@ -41,7 +39,6 @@ class AnimeSearchResult {
         title: json['title'],
         airing: json['airing'],
         synopsis: json['synopsis'],
-        type: json['type'],
         episodes: json['episodes'] ?? 0,
         score: json['score'] ?? 0,
         rated: json['rated'] ?? "",

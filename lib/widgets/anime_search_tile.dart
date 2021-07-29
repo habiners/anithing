@@ -9,6 +9,7 @@ class AnimeSearchTile extends StatelessWidget {
 
   final AnimeSearchResult anime;
 
+//Phone size: 1080x2340 pixels
   @override
   Widget build(BuildContext context) {
     return InkWell(

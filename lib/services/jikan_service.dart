@@ -39,10 +39,14 @@ Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode
   try {
     Uri uri = Uri.parse(apiBasePath + '/search/' + searchQueryParameters);
     print(uri.toString());
+    print(mode);
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
-      return mode == "Anime" ? listAnimeSearchResultFromJsonString(jsonString) : listMangaSearchResultFromJsonString(jsonString);
+      if (mode == "Anime")
+        return listAnimeSearchResultFromJsonString(jsonString);
+      else
+        return listMangaSearchResultFromJsonString(jsonString);
     } else {
       return [];
     }
