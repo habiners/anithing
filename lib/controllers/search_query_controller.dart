@@ -6,11 +6,12 @@ import '../models/anime_search_result.dart';
 import '../models/manga_search_result.dart';
 import '../services/jikan_service.dart';
 
-class SearchAnimeController extends GetxController {
+class SearchQueryController extends GetxController {
   RxString mode = "Anime".obs;
   RxBool isLoading = true.obs;
   TextEditingController searchQueryTextController = TextEditingController();
 
+  RxInt selectedGenre = 0.obs;
   RxList<bool> selectedAnimeGenres = List<bool>.filled(AnimeGenres.values.length, false).obs;
   RxList<bool> selectedMangaGenres = List<bool>.filled(MangaGenres.values.length, false).obs;
   RxList<AnimeSearchResult> animeSearchResults = <AnimeSearchResult>[].obs;

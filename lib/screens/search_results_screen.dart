@@ -10,21 +10,21 @@ import '../widgets/scaffold_appbar.dart';
 class SearchResultsScreen extends StatelessWidget {
   SearchResultsScreen({Key? key}) : super(key: key);
 
-  final SearchAnimeController jikanController = Get.find();
+  final SearchQueryController searchQueryController = Get.find();
   @override
   Widget build(BuildContext context) {
-    jikanController.searchQuery();
+    searchQueryController.searchQuery();
     return Scaffold(
       appBar: createScaffoldAppBar(
         actions: [],
-        title: "${jikanController.mode}: \"${jikanController.searchQueryTextController.text}\"",
+        title: "${searchQueryController.mode}: \"${searchQueryController.searchQueryTextController.text}\"",
       ),
       body: Obx(
-        () => jikanController.isLoading.value
+        () => searchQueryController.isLoading.value
             ? Center(child: CircularProgressIndicator())
             : ListView(
-                children: jikanController.mode.value == "Anime"
-                    ? jikanController.animeSearchResults.isEmpty
+                children: searchQueryController.mode.value == "Anime"
+                    ? searchQueryController.animeSearchResults.isEmpty
                         ? [
                             Container(
                               alignment: Alignment.center,
@@ -33,10 +33,10 @@ class SearchResultsScreen extends StatelessWidget {
                             ),
                           ]
                         : [
-                            for (int i = 0; i < jikanController.animeSearchResults.length; i++)
-                              AnimeSearchTile(anime: jikanController.animeSearchResults[i], odd: i % 2 == 0)
+                            for (int i = 0; i < searchQueryController.animeSearchResults.length; i++)
+                              AnimeSearchTile(anime: searchQueryController.animeSearchResults[i], odd: i % 2 == 0)
                           ]
-                    : jikanController.mangaSearchResults.isEmpty
+                    : searchQueryController.mangaSearchResults.isEmpty
                         ? [
                             Container(
                               alignment: Alignment.center,
@@ -45,8 +45,8 @@ class SearchResultsScreen extends StatelessWidget {
                             ),
                           ]
                         : [
-                            for (int i = 0; i < jikanController.mangaSearchResults.length; i++)
-                              MangaSearchTile(manga: jikanController.mangaSearchResults[i], odd: i % 2 == 0)
+                            for (int i = 0; i < searchQueryController.mangaSearchResults.length; i++)
+                              MangaSearchTile(manga: searchQueryController.mangaSearchResults[i], odd: i % 2 == 0)
                           ],
               ),
       ),

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../constants/genres.dart';
 import '../constants/styles.dart';
 import '../controllers/search_query_controller.dart';
-import '../screens/search_results.dart';
+import 'search_results_screen.dart';
 import '../widgets/scaffold_appbar.dart';
 import '../widgets/scaffold_drawer.dart';
 import '../widgets/custom_text.dart';
@@ -12,7 +12,7 @@ import '../widgets/custom_text.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final SearchAnimeController jikanController = Get.put(SearchAnimeController());
+  final SearchQueryController jikanController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,7 @@ class HomeScreen extends StatelessWidget {
               //         Get.to(SearchResultsScreen());
               //     },
               //     child: Text("Search")),
-              // Toggle
+              // Anime/Manga Toggle
               Container(
                 margin: EdgeInsets.symmetric(vertical: 10),
                 child: Row(
