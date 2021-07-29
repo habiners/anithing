@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:anithing/models/anime.dart';
 import 'package:anithing/models/anime_search_result.dart';
+import 'package:anithing/models/manga.dart';
 import 'package:anithing/models/manga_search_result.dart';
 import 'package:http/http.dart' as http;
 
@@ -17,7 +20,18 @@ Anime fetchAnime(int animeId) {
 // 2. Anime Episodes: /anime/{int:id}/episode
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
-
+class MangaService {
+  static getManga() async {
+    // String baseUrl = 'https://api.jikan.moe/v3/manga/';
+    // String url = baseUrl + id.toString();
+    String url = 'https://api.jikan.moe/v3/manga/1';
+    final response = await http.get(Uri.parse(url));
+    // var jsonResponse = jsonDecode(response.body);
+    // print(jsonResponse);
+    // return jsonResponse.map((item) => new Manga.fromJson(item)).toList();
+    return Manga.fromJson(jsonDecode(response.body));
+  }
+}
 // Ed ==============================
 // 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D
 // Sample: https://api.jikan.moe/v3/manga/1 - Gets Monster Manga Info
@@ -35,7 +49,8 @@ Anime fetchAnime(int animeId) {
 
 // 6. Search Anime and Manga (LISOD NI)
 // Sample: https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1
-Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
+Future<List<dynamic>> fetchSearchQuery(
+    String searchQueryParameters, String mode) async {
   try {
     Uri uri = Uri.parse(apiBasePath + '/search/' + searchQueryParameters);
     print(uri.toString());
