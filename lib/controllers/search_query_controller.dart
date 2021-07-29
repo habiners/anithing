@@ -10,7 +10,6 @@ class SearchAnimeController extends GetxController {
   RxString mode = "Anime".obs;
   RxBool isLoading = true.obs;
   TextEditingController searchQueryTextController = TextEditingController();
-  // TextEditingController searchQueryTextController = TextEditingController(text: "Fate");
 
   RxList<bool> selectedAnimeGenres = List<bool>.filled(AnimeGenres.values.length, false).obs;
   RxList<bool> selectedMangaGenres = List<bool>.filled(MangaGenres.values.length, false).obs;
@@ -20,10 +19,6 @@ class SearchAnimeController extends GetxController {
   Future<void> searchQuery({int page = 1}) async {
     isLoading.value = true;
     try {
-      if (searchQueryTextController.text.length < 3) {
-        Get.snackbar("Warning!", "Search query must contain at least 3 letters!");
-        return;
-      }
       print("=====Creation of Search Query=====");
       String searchQuery = "${mode.value == "Anime" ? "anime" : "manga"}?q=${searchQueryTextController.text}&page=$page";
       String genresQuery = "";
