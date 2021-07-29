@@ -23,7 +23,11 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(color: color, fontSize: size, fontWeight: weight),
+      style: TextStyle(
+        color: color,
+        fontSize: size,
+        fontWeight: weight,
+      ),
       textAlign: textAlign,
       overflow: overflow,
       maxLines: maxLines,
