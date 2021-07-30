@@ -6,7 +6,7 @@ import '../models/anime_search_result.dart';
 import '../models/manga_search_result.dart';
 import '../services/jikan_service.dart';
 
-class SearchAnimeController extends GetxController {
+class SearchQueryController extends GetxController {
   RxString mode = "Anime".obs;
   RxBool isLoading = true.obs;
   TextEditingController searchQueryTextController = TextEditingController();

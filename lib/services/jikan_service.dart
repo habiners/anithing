@@ -31,21 +31,40 @@ Anime fetchAnime(int animeId) {
 // Sample:
 // https://api.jikan.moe/v3/genre/anime/1 - Gets anime with "Action" Genre, page 1
 // https://api.jikan.moe/v3/genre/manga/2 - Gets anime with "Adventure" Genre, page 2
+Future<List<dynamic>> fetchGenreQuery(String genreId, String mode) async {
+  try {
+    Uri uri = Uri.parse('$apiBasePath/genre/$mode/$genreId');
+    print(uri.toString());
+    print(mode);
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+      if (mode == "anime")
+        return listAnimeSearchResultFromJsonString(jsonString, 'anime');
+      else
+        return listMangaSearchResultFromJsonString(jsonString, 'manga');
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw (e);
+  }
+}
 
 // 6. Search Anime and Manga (LISOD NI)
 // Sample: https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1
 Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
   try {
-    Uri uri = Uri.parse(apiBasePath + '/search/' + searchQueryParameters);
+    Uri uri = Uri.parse('$apiBasePath/search/$searchQueryParameters');
     print(uri.toString());
     print(mode);
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
       if (mode == "Anime")
-        return listAnimeSearchResultFromJsonString(jsonString);
+        return listAnimeSearchResultFromJsonString(jsonString, 'results');
       else
-        return listMangaSearchResultFromJsonString(jsonString);
+        return listMangaSearchResultFromJsonString(jsonString, 'results');
     } else {
       return [];
     }
