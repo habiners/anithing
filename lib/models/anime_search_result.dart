@@ -1,7 +1,7 @@
 import "dart:convert" as converter;
 
-List<AnimeSearchResult> listAnimeSearchResultFromJsonString(String jsonString) {
-  List<dynamic> jsonMap = converter.jsonDecode(jsonString)['results'];
+List<AnimeSearchResult> listAnimeSearchResultFromJsonString(String jsonString, String listKey) {
+  List<dynamic> jsonMap = converter.jsonDecode(jsonString)[listKey];
   return List<AnimeSearchResult>.from(
     jsonMap.map(
       (jsonItem) => AnimeSearchResult.fromJson(jsonItem),
@@ -37,7 +37,7 @@ class AnimeSearchResult {
         url: json['url'],
         imageUrl: json['image_url'],
         title: json['title'],
-        airing: json['airing'],
+        airing: json['airing'] ?? false,
         synopsis: json['synopsis'],
         episodes: json['episodes'] ?? 0,
         score: json['score'] ?? 0,
