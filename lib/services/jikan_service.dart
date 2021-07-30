@@ -21,20 +21,19 @@ Anime fetchAnime(int animeId) {
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
 class MangaService {
-  static Future<Manga> manga(int? id) async {
+  static Future<Manga> manga(int id) async {
     final response = await http
         .get(Uri.parse('https://api.jikan.moe/v3/manga/' + id.toString()));
-
+    // Manga? a;
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      print(response.body);
 
       return Manga.fromJson(jsonDecode(response.body));
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
-      throw Exception('Failed to load album');
+      throw Exception('Failed to load Manga');
     }
   }
 }

@@ -14,8 +14,17 @@ class JikanController extends GetxController {
   RxList<Anime> animeList = <Anime>[].obs;
   RxList<Manga> mangaList = <Manga>[].obs;
   Anime retrievedAnime = Anime();
-
+  Manga? manga;
   void getAnime(int animeId) {
     Anime retrievedAnime = fetchAnime(animeId);
+  }
+
+  void getManga(int mangaId) async {
+    manga = await MangaService.manga(mangaId);
+    isLoading = false.obs;
+    print('--------------------------------------------');
+    print(manga!.malId.toString());
+    print(manga!.title);
+    print(mangaId);
   }
 }

@@ -17,7 +17,7 @@ class MangaSearchTile extends StatelessWidget {
     return InkWell(
       onTap: () {
         // TODO: Add link to Manga Page
-        jikanController.id = manga.malId;
+        jikanController.getManga(manga.malId);
         Get.toNamed(mangaDetailsRoute);
       },
       child: Container(
