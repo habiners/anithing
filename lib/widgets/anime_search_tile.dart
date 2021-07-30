@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../constants/styles.dart';
 import '../models/anime_search_result.dart';
+import '../screens/home_screen.dart';
 import 'custom_text.dart';
 
 class AnimeSearchTile extends StatelessWidget {
@@ -15,7 +17,8 @@ class AnimeSearchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // TODO: Add link to Anime Page
+        // TODO: Change link to Anime Details Screen
+        Get.to(() => HomeScreen());
       },
       child: Container(
         height: 120,
