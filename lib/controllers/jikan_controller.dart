@@ -15,11 +15,4 @@ class JikanController extends GetxController {
   void getAnime(int animeId) {
     Anime retrievedAnime = fetchAnime(animeId);
   }
-
-  void fetchManga() async {
-    var manga = await MangaService.getManga();
-    if (manga != null) {
-      mangaList = manga;
-    }
-  }
 }

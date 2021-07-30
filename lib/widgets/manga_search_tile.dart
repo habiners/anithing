@@ -1,19 +1,24 @@
+import 'package:anithing/controllers/manga_controller.dart';
+import 'package:anithing/router/routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../models/manga_search_result.dart';
 import 'custom_text.dart';
 
 class MangaSearchTile extends StatelessWidget {
-  const MangaSearchTile({Key? key, required this.manga}) : super(key: key);
+  MangaSearchTile({Key? key, required this.manga}) : super(key: key);
 
   final MangaSearchResult manga;
-
+  final MangaController jikanController = Get.put(MangaController());
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         // TODO: Add link to Manga Page
+        jikanController.id = manga.malId;
+        Get.toNamed(mangaDetailsRoute);
       },
       child: Container(
         height: 120,
@@ -22,7 +27,10 @@ class MangaSearchTile extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(width: 80, height: 100, child: CachedNetworkImage(imageUrl: manga.imageUrl)),
+            Container(
+                width: 80,
+                height: 100,
+                child: CachedNetworkImage(imageUrl: manga.imageUrl)),
             SizedBox(width: 4),
             Expanded(
               child: Column(
@@ -30,7 +38,10 @@ class MangaSearchTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   CustomText(text: manga.title, weight: FontWeight.bold),
-                  CustomText(text: manga.synopsis, textAlign: TextAlign.left, maxLines: 3),
+                  CustomText(
+                      text: manga.synopsis,
+                      textAlign: TextAlign.left,
+                      maxLines: 3),
                   SizedBox(height: 4),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -43,8 +54,10 @@ class MangaSearchTile extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          CustomText(text: "Chapters: ", weight: FontWeight.bold),
-                          CustomText(text: "${manga.chapters.toString().padLeft(4)}"),
+                          CustomText(
+                              text: "Chapters: ", weight: FontWeight.bold),
+                          CustomText(
+                              text: "${manga.chapters.toString().padLeft(4)}"),
                         ],
                       ),
                     ],

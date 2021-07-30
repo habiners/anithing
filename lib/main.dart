@@ -5,6 +5,7 @@ import './controllers/jikan_controller.dart';
 import './screens/home.dart';
 import './screens/search_results.dart';
 import './router/routes.dart';
+import 'widgets/manga_details.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         GetPage(name: homeRoute, page: () => HomeScreen()),
         GetPage(name: animeDetailsRoute, page: () => HomeScreen()),
         GetPage(name: animeEpisodesRoute, page: () => HomeScreen()),
-        GetPage(name: mangaDetailsRoute, page: () => HomeScreen()),
+        GetPage(name: mangaDetailsRoute, page: () => MangaDetails()),
         GetPage(name: topAnimeRoute, page: () => HomeScreen()),
         GetPage(name: topMangaRoute, page: () => HomeScreen()),
         GetPage(name: browseGenreRoute, page: () => HomeScreen()),
