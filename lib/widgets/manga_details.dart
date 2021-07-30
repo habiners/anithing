@@ -1,4 +1,5 @@
-import 'package:anithing/controllers/manga_controller.dart';
+import 'package:anithing/controllers/jikan_controller.dart';
+
 import 'package:anithing/models/manga.dart';
 import 'package:anithing/services/jikan_service.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,7 @@ class MangaDetails extends StatefulWidget {
 
 class _MangaDetailsState extends State<MangaDetails> {
   Future<Manga>? manga;
-  final MangaController jikanController = Get.put(MangaController());
+  final JikanController jikanController = Get.put(JikanController());
   @override
   void initState() {
     super.initState();
