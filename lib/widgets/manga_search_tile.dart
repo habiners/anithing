@@ -6,19 +6,21 @@ import 'package:get/get.dart';
 
 import '../models/manga_search_result.dart';
 import 'custom_text.dart';
+import 'manga_details.dart';
 
 class MangaSearchTile extends StatelessWidget {
   MangaSearchTile({Key? key, required this.manga}) : super(key: key);
 
   final MangaSearchResult manga;
-  final JikanController jikanController = Get.put(JikanController());
+  final JikanController jikanController = Get.find();
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
         // TODO: Add link to Manga Page
-        jikanController.getManga(manga.malId);
-        Get.toNamed(mangaDetailsRoute);
+
+        jikanController.id = manga.malId;
+        Get.to(() => MangaDetails());
       },
       child: Container(
         height: 120,

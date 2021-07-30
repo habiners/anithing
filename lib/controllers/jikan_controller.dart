@@ -6,8 +6,6 @@ import '../services/jikan_service.dart';
 
 class JikanController extends GetxController {
   static JikanController instance = Get.find();
-
-  JikanController({this.id});
   RxBool isLoading = true.obs;
   int? id;
   // Link to service
@@ -19,12 +17,12 @@ class JikanController extends GetxController {
     Anime retrievedAnime = fetchAnime(animeId);
   }
 
-  void getManga(int mangaId) async {
-    manga = await MangaService.manga(mangaId);
-    isLoading = false.obs;
+  void getManga() async {
+    manga = await MangaService.manga(id!);
+    isLoading.value = false;
     print('--------------------------------------------');
     print(manga!.malId.toString());
     print(manga!.title);
-    print(mangaId);
+    // print(mangaId);
   }
 }
