@@ -1,4 +1,4 @@
-import 'package:anithing/controllers/manga_controller.dart';
+import 'package:anithing/controllers/jikan_controller.dart';
 import 'package:anithing/router/routes.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +11,7 @@ class MangaSearchTile extends StatelessWidget {
   MangaSearchTile({Key? key, required this.manga}) : super(key: key);
 
   final MangaSearchResult manga;
-  final MangaController jikanController = Get.put(MangaController());
+  final JikanController jikanController = Get.put(JikanController());
   @override
   Widget build(BuildContext context) {
     return InkWell(
