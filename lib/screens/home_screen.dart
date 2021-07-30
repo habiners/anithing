@@ -12,7 +12,7 @@ import '../widgets/custom_text.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
-  final SearchQueryController jikanController = Get.find();
+  final SearchQueryController searchQueryController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,35 +30,35 @@ class HomeScreen extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(bottom: 10),
                 child: TextField(
-                  controller: jikanController.searchQueryTextController,
+                  controller: searchQueryController.searchQueryTextController,
                   keyboardType: TextInputType.text,
                   textCapitalization: TextCapitalization.words,
                   style: TextStyle(color: mintCreamColor),
                   decoration: InputDecoration(
-                    labelText: "Search ${jikanController.mode}:",
+                    labelText: "Search ${searchQueryController.mode}:",
                     labelStyle: TextStyle(color: mintCreamColor),
-                    hintText: "Input ${jikanController.mode} title",
+                    hintText: "Input ${searchQueryController.mode} title",
                     hintStyle: TextStyle(color: independenceColor),
                     icon: Icon(Icons.search, color: mintCreamColor),
                     suffix: IconButton(
-                      onPressed: () => jikanController.searchQueryTextController.clear(),
+                      onPressed: () => searchQueryController.searchQueryTextController.clear(),
                       icon: Icon(Icons.clear, color: mintCreamColor),
                     ),
                     enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: mintCreamColor)),
                     focusedErrorBorder: UnderlineInputBorder(borderSide: BorderSide(color: royalBlueLightColor)),
                   ),
                   onSubmitted: (String str) {
-                    if (jikanController.searchQueryTextController.text.length < 3)
+                    if (searchQueryController.searchQueryTextController.text.length < 3)
                       Get.snackbar("Warning!", "Search query must contain at least 3 letters!");
                     else
-                      Get.to(SearchResultsScreen());
+                      Get.to(() => SearchResultsScreen());
                   },
                 ),
               ),
               // Test search
               // ElevatedButton(
               //     onPressed: () {
-              //       if (jikanController.searchQueryTextController.text.length < 3)
+              //       if (searchQueryController.searchQueryTextController.text.length < 3)
               //         Get.snackbar("Warning!", "Search query must contain at least 3 letters!");
               //       else
               //         Get.to(SearchResultsScreen());
@@ -76,7 +76,7 @@ class HomeScreen extends StatelessWidget {
                         width: 120,
                         child: Center(child: CustomText(text: "Anime")),
                         decoration: BoxDecoration(
-                          color: jikanController.mode.value == "Anime" ? royalBlueLightColor : independenceColor,
+                          color: searchQueryController.mode.value == "Anime" ? royalBlueLightColor : independenceColor,
                           border: Border(),
                           borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(10),
@@ -84,7 +84,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onTap: () => jikanController.mode.value = "Anime",
+                      onTap: () => searchQueryController.mode.value = "Anime",
                     ),
                     Container(width: 1, height: 40, color: Colors.white),
                     InkWell(
@@ -93,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                         width: 120,
                         child: Center(child: CustomText(text: "Manga")),
                         decoration: BoxDecoration(
-                          color: jikanController.mode.value == "Manga" ? royalBlueLightColor : independenceColor,
+                          color: searchQueryController.mode.value == "Manga" ? royalBlueLightColor : independenceColor,
                           border: Border(),
                           borderRadius: BorderRadius.only(
                             topRight: Radius.circular(10),
@@ -101,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      onTap: () => jikanController.mode.value = "Manga",
+                      onTap: () => searchQueryController.mode.value = "Manga",
                     ),
                   ],
                 ),
@@ -117,15 +117,15 @@ class HomeScreen extends StatelessWidget {
                   scrollDirection: Axis.vertical,
                   child: Wrap(
                     alignment: WrapAlignment.start,
-                    children: jikanController.mode.value == "Anime"
+                    children: searchQueryController.mode.value == "Anime"
                         ? AnimeGenres.values
                             .map(
                               (AnimeGenres genre) => Container(
                                 child: FilterChip(
                                   label: CustomText(text: genre.toString().split('.').last.replaceAll('_', ' ')),
-                                  selected: jikanController.selectedAnimeGenres[genre.index],
+                                  selected: searchQueryController.selectedAnimeGenres[genre.index],
                                   onSelected: (boolValue) {
-                                    jikanController.selectedAnimeGenres[genre.index] = boolValue;
+                                    searchQueryController.selectedAnimeGenres[genre.index] = boolValue;
                                   },
                                   checkmarkColor: mintCreamColor,
                                   backgroundColor: independenceColor,
@@ -141,9 +141,9 @@ class HomeScreen extends StatelessWidget {
                               (MangaGenres genre) => Container(
                                 child: FilterChip(
                                   label: CustomText(text: genre.toString().split('.').last.replaceAll('_', ' ')),
-                                  selected: jikanController.selectedMangaGenres[genre.index],
+                                  selected: searchQueryController.selectedMangaGenres[genre.index],
                                   onSelected: (boolValue) {
-                                    jikanController.selectedMangaGenres[genre.index] = boolValue;
+                                    searchQueryController.selectedMangaGenres[genre.index] = boolValue;
                                   },
                                   checkmarkColor: mintCreamColor,
                                   backgroundColor: independenceColor,
