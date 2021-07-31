@@ -1,5 +1,5 @@
 import 'package:anithing/controllers/jikan_controller.dart';
-import 'package:anithing/widgets/anime_details.dart';
+import 'package:anithing/screens/anime_details.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +9,6 @@ import '../models/anime_search_result.dart';
 import 'custom_text.dart';
 
 class AnimeSearchTile extends StatelessWidget {
-  // const AnimeSearchTile({Key? key, required this.anime, this.odd = false})
-  //     : super(key: key);
   AnimeSearchTile({Key? key, required this.anime, this.odd = false})
       : super(key: key);
   final AnimeSearchResult anime;
@@ -21,10 +19,8 @@ class AnimeSearchTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // TODO: Add link to Anime Page
-        // Get.to(() => AnimeDetails(id: anime.malId));
         animeController.id = anime.malId;
-        Get.to(() => AnimeDetails());
+        Get.to(() => AnimeDetailsScreen());
       },
       child: Container(
         height: 120,

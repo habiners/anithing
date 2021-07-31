@@ -16,10 +16,8 @@ class JikanController extends GetxController {
   RxString activeRoute = homeRoute.obs;
   Anime? anime;
 
-  // void getAnime(int animeId) {
-  //   Anime retrievedAnime = fetchAnime(animeId);
-  // }
   void getAnime() async {
+    isLoading.value = true;
     anime = await AnimeService.fetchAnime(id!);
     isLoading.value = false;
     print('--------------------------------------------');
