@@ -9,8 +9,26 @@ String apiBasePath = "https://api.jikan.moe/v3";
 // Zath ==============================
 // 1. Anime Information: /anime/{int:id}
 // Sample: https://api.jikan.moe/v3/anime/21/ - Gets One Piece Anime Info
-Anime fetchAnime(int animeId) {
-  return Anime();
+// Anime fetchAnime(int animeId) {
+//   return Anime();
+// }
+String aniPath = "https://api.jikan.moe/v3/anime/";
+
+class AnimeService {
+  static Future<Anime> fetchAnime(int? id) async {
+    try {
+      Uri uri = Uri.parse(aniPath + id.toString());
+      print(uri.toString());
+      http.Response response = await http.get(uri);
+      if (response.statusCode == 200) {
+        return detailsFromJson(response.body);
+      } else {
+        throw Exception('Failed to load!');
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 // 2. Anime Episodes: /anime/{int:id}/episode
@@ -53,7 +71,8 @@ Future<List<dynamic>> fetchGenreQuery(String genreId, String mode) async {
 
 // 6. Search Anime and Manga (LISOD NI)
 // Sample: https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1
-Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
+Future<List<dynamic>> fetchSearchQuery(
+    String searchQueryParameters, String mode) async {
   try {
     Uri uri = Uri.parse('$apiBasePath/search/$searchQueryParameters');
     print(uri.toString());
