@@ -19,7 +19,6 @@ class SearchQueryController extends GetxController {
   Future<void> searchQuery({int page = 1}) async {
     isLoading.value = true;
     try {
-      print("=====Creation of Search Query=====");
       String searchQuery = "${mode.value == "Anime" ? "anime" : "manga"}?q=${searchQueryTextController.text}&page=$page";
       String genresQuery = "";
       if (mode.value == "Anime") {
@@ -40,7 +39,6 @@ class SearchQueryController extends GetxController {
         }
       }
       searchQuery += genresQuery;
-      print(searchQuery);
 
       if (mode.value == "Anime")
         animeSearchResults.value = await fetchSearchQuery(searchQuery, "Anime") as List<AnimeSearchResult>;

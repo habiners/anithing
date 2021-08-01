@@ -4,10 +4,10 @@ import 'package:get/get.dart';
 import '../constants/genres.dart';
 import '../constants/styles.dart';
 import '../controllers/search_query_controller.dart';
-import 'search_results_screen.dart';
 import '../widgets/scaffold_appbar.dart';
 import '../widgets/scaffold_drawer.dart';
 import '../widgets/custom_text.dart';
+import 'search_results_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);

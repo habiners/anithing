@@ -4,8 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AnimeEpisodesTile extends StatelessWidget {
-  AnimeEpisodesTile({Key? key, required this.animeEp, this.odd = false})
-      : super(key: key);
+  AnimeEpisodesTile({Key? key, required this.animeEp, this.odd = false}) : super(key: key);
   final AnimeEpisodes animeEp;
   final bool odd;
   final JikanController animeEpController = Get.find();
@@ -27,23 +26,18 @@ class AnimeEpisodesTile extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('Episode ${animeEp.episode_id}:',
-                        style:
-                            TextStyle(color: Color(0xFF32292F), fontSize: 16)),
+                    child: Text('Episode ${animeEp.episodeId}:', style: TextStyle(color: Color(0xFF32292F), fontSize: 16)),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text('${animeEp.aired}',
-                        style:
-                            TextStyle(color: Color(0xFF32292F), fontSize: 16)),
+                    child: Text('${animeEp.aired}', style: TextStyle(color: Color(0xFF32292F), fontSize: 16)),
                   )
                 ],
               ),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 15, bottom: 8),
-              child: Text('${animeEp.title}',
-                  style: TextStyle(color: Color(0xFFD1E3DD), fontSize: 20)),
+              child: Text('${animeEp.title}', style: TextStyle(color: Color(0xFFD1E3DD), fontSize: 20)),
             )
           ],
         ),

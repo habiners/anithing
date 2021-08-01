@@ -1,17 +1,15 @@
-import 'package:anithing/constants/styles.dart';
-import 'package:anithing/screens/browse_genres_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/styles.dart';
 import './controllers/jikan_controller.dart';
 import './controllers/browse_genre_controller.dart';
 import './controllers/search_query_controller.dart';
-import 'screens/home_screen.dart';
+import './screens/home_screen.dart';
+import './screens/top_anime_screen.dart';
+import './screens/top_manga_screen.dart';
+import './screens/browse_genres_screen.dart';
 import './router/routes.dart';
-import 'screens/top_anime_screen.dart';
-import 'screens/top_manga_screen.dart';
-// import 'widgets/manga_details.dart';
-// import 'widgets/top_manga.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

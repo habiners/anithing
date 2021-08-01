@@ -10,26 +10,19 @@ List<AnimeEpisodes> listAnimeEpisodesFromJsonString(String jsonString) {
 }
 
 class AnimeEpisodes {
-  int episode_id;
+  int episodeId;
   String title;
   String aired;
 
   AnimeEpisodes({
-    required this.episode_id,
+    required this.episodeId,
     required this.title,
     required this.aired,
   });
 
-  String toCustomString() {
-    return "Ep: $episode_id, Title: $title, Aired: $aired";
-  }
-
-  factory AnimeEpisodes.fromJson(Map<String, dynamic> json) =>
-      new AnimeEpisodes(
-        episode_id: json["episode_id"],
+  factory AnimeEpisodes.fromJson(Map<String, dynamic> json) => new AnimeEpisodes(
+        episodeId: json["episode_id"],
         title: json["title"] ?? 'No title',
-        aired: json["aired"] != null || json["aired"] != ''
-            ? json["aired"].toString().substring(0, 10)
-            : 'Unknown',
+        aired: json["aired"] != null || json["aired"] != '' ? json["aired"].toString().substring(0, 10) : 'Unknown',
       );
 }
