@@ -20,14 +20,6 @@ class MangaDetails extends StatelessWidget {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(400),
         child: AppBar(
-          actions: [
-            IconButton(
-              icon: Icon(
-                Icons.arrow_back,
-              ),
-              onPressed: () {},
-            )
-          ],
           flexibleSpace: Obx(
             () {
               return jikanController.isLoading.value
@@ -51,10 +43,7 @@ class MangaDetails extends StatelessWidget {
       ),
       body: Obx(() {
         return jikanController.isLoading.value
-            ? Container(
-                margin: EdgeInsets.only(top: 80.0),
-                height: MediaQuery.of(context).size.width * .6,
-                width: MediaQuery.of(context).size.width * .6,
+            ? Center(
                 child: CircularProgressIndicator(),
               )
             : SingleChildScrollView(

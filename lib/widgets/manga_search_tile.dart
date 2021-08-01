@@ -11,30 +11,20 @@ import 'custom_text.dart';
 import 'manga_details.dart';
 
 class MangaSearchTile extends StatelessWidget {
-<<<<<<< HEAD
-  MangaSearchTile({Key? key, required this.manga}) : super(key: key);
+  MangaSearchTile({Key? key, required this.manga, this.odd = false})
+      : super(key: key);
 
   final MangaSearchResult manga;
   final JikanController jikanController = Get.find();
-=======
-  const MangaSearchTile({Key? key, required this.manga, this.odd = false}) : super(key: key);
-
-  final MangaSearchResult manga;
   final bool odd;
->>>>>>> master
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-<<<<<<< HEAD
-        // TODO: Add link to Manga Page
-
+        // TODO: Change link to Manga Screen
         jikanController.id = manga.malId;
         Get.to(() => MangaDetails());
-=======
-        // TODO: Change link to Manga Screen
-        Get.to(() => HomeScreen());
->>>>>>> master
       },
       child: Container(
         height: 120,
@@ -50,69 +40,77 @@ class MangaSearchTile extends StatelessWidget {
                 child: CachedNetworkImage(imageUrl: manga.imageUrl)),
             SizedBox(width: 4),
             Expanded(
-<<<<<<< HEAD
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CustomText(text: manga.title, weight: FontWeight.bold),
-                  CustomText(
-                      text: manga.synopsis,
-                      textAlign: TextAlign.left,
-                      maxLines: 3),
-                  SizedBox(height: 4),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
-                        children: [
-                          CustomText(text: "Score: ", weight: FontWeight.bold),
-                          CustomText(text: "${manga.score}"),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          CustomText(
-                              text: "Chapters: ", weight: FontWeight.bold),
-                          CustomText(
-                              text: "${manga.chapters.toString().padLeft(4)}"),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-=======
-              child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 4),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     CustomText(text: manga.title, weight: FontWeight.bold),
-                    CustomText(text: manga.synopsis, textAlign: TextAlign.left, maxLines: 3),
+                    CustomText(
+                        text: manga.synopsis,
+                        textAlign: TextAlign.left,
+                        maxLines: 3),
                     SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Row(
                           children: [
-                            CustomText(text: "Score: ", weight: FontWeight.bold),
+                            CustomText(
+                                text: "Score: ", weight: FontWeight.bold),
                             CustomText(text: "${manga.score}"),
                           ],
                         ),
                         Row(
                           children: [
-                            CustomText(text: "Volumes: ", weight: FontWeight.bold),
-                            CustomText(text: "${manga.volumes.toString().padLeft(4)}"),
+                            CustomText(
+                                text: "Chapters: ", weight: FontWeight.bold),
+                            CustomText(
+                                text:
+                                    "${manga.chapters.toString().padLeft(4)}"),
                           ],
                         ),
                       ],
                     ),
-                  ],
-                ),
->>>>>>> master
-              ),
-            ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 4),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          CustomText(
+                              text: manga.title, weight: FontWeight.bold),
+                          CustomText(
+                              text: manga.synopsis,
+                              textAlign: TextAlign.left,
+                              maxLines: 3),
+                          SizedBox(height: 4),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  CustomText(
+                                      text: "Score: ", weight: FontWeight.bold),
+                                  CustomText(text: "${manga.score}"),
+                                ],
+                              ),
+                              Row(
+                                children: [
+                                  CustomText(
+                                      text: "Volumes: ",
+                                      weight: FontWeight.bold),
+                                  CustomText(
+                                      text:
+                                          "${manga.volumes.toString().padLeft(4)}"),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ]),
+            )
           ],
         ),
       ),

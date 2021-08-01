@@ -1,12 +1,6 @@
-<<<<<<< HEAD
 import 'dart:convert';
 
-import 'package:anithing/models/anime.dart';
-import 'package:anithing/models/anime_search_result.dart';
 import 'package:anithing/models/manga.dart';
-import 'package:anithing/models/manga_search_result.dart';
-=======
->>>>>>> master
 import 'package:http/http.dart' as http;
 
 import '../models/anime.dart';
@@ -50,6 +44,37 @@ class MangaService {
 // Samples:
 // https://api.jikan.moe/v3/top/anime/1/ - Gets top anime, page 1
 // https://api.jikan.moe/v3/top/manga/2/ - Gets top manga, page 2
+Future<List<dynamic>> getTopMangaList() async {
+  try {
+    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/manga/2');
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+
+      return topMangaListConverter(jsonString, 'top');
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+Future<List<dynamic>> getTopAnimeList() async {
+  try {
+    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/anime/1');
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+
+      return topAnimeListConverter(jsonString, 'top');
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw e;
+  }
+}
 
 // Javin ==============================
 // 5. Browse Anime/Manga By Genre https://api.jikan.moe/v3/genre/%7Bstring:anime%7C%7Cmanga%7D/%7Bint:page%7D

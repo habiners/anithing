@@ -8,7 +8,10 @@ import './controllers/browse_genre_controller.dart';
 import './controllers/search_query_controller.dart';
 import 'screens/home_screen.dart';
 import './router/routes.dart';
-import 'widgets/manga_details.dart';
+import 'screens/top_anime_screen.dart';
+import 'screens/top_manga_screen.dart';
+// import 'widgets/manga_details.dart';
+// import 'widgets/top_manga.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -37,14 +40,8 @@ class MyApp extends StatelessWidget {
       initialRoute: homeRoute,
       getPages: [
         GetPage(name: homeRoute, page: () => HomeScreen()),
-<<<<<<< HEAD
-        GetPage(name: animeDetailsRoute, page: () => HomeScreen()),
-        GetPage(name: animeEpisodesRoute, page: () => HomeScreen()),
-        GetPage(name: mangaDetailsRoute, page: () => MangaDetails()),
-=======
->>>>>>> master
-        GetPage(name: topAnimeRoute, page: () => HomeScreen()),
-        GetPage(name: topMangaRoute, page: () => HomeScreen()),
+        GetPage(name: topAnimeRoute, page: () => TopAnimeListScreen()),
+        GetPage(name: topMangaRoute, page: () => TopMangaListScreen()),
         GetPage(name: browseGenreRoute, page: () => BrowseGenresScreen()),
       ],
     );
