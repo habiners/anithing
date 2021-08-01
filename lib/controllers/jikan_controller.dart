@@ -9,6 +9,8 @@ import '../services/jikan_service.dart';
 class JikanController extends GetxController {
   static JikanController instance = Get.find();
   RxBool isLoading = true.obs;
+  RxBool isLoadingManga = true.obs;
+  RxBool isLoadingAnime = true.obs;
   int? id;
   // Link to service
   RxList<Anime> animeList = <Anime>[].obs;
@@ -31,8 +33,8 @@ class JikanController extends GetxController {
   }
 
   Future<void> topMangaController() async {
-    isLoading.value = true;
     try {
+      isLoadingManga.value = true;
       topManga.value = await getTopMangaList() as List<TopMangaModel>;
     } on Exception catch (e) {
       print(e.toString());
@@ -43,8 +45,8 @@ class JikanController extends GetxController {
 
   //top anime controller
   Future<void> topAnimeController() async {
-    isLoading.value = true;
     try {
+      isLoadingAnime.value = true;
       topAnime.value = await getTopAnimeList() as List<TopAnimeModel>;
     } on Exception catch (e) {
       print(e.toString());

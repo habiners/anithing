@@ -19,7 +19,7 @@ class TopAnime extends StatelessWidget {
       onTap: () {},
       child: Container(
         height: 120,
-        color: Colors.black54,
+        color: odd ? Colors.grey[900] : Colors.blueGrey[600],
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
