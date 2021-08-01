@@ -7,8 +7,8 @@ class Anime {
   String url;
   String imageUrl;
   String title;
-  num? episodes;
   String rating;
+  String status;
   num score;
   String? synopsis;
 
@@ -17,8 +17,8 @@ class Anime {
     required this.url,
     required this.imageUrl,
     required this.title,
-    required this.episodes,
     required this.rating,
+    required this.status,
     required this.score,
     required this.synopsis,
   });
@@ -28,8 +28,8 @@ class Anime {
         url: json["url"],
         imageUrl: json["image_url"],
         title: json["title"] ?? 'No title',
-        episodes: json["episodes"] ?? 0,
         rating: json["rating"],
+        status: json["status"],
         score: json["score"] ?? 0,
         synopsis: json["synopsis"] ?? 'No Synopsis',
       );

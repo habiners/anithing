@@ -1,6 +1,7 @@
 import 'package:anithing/controllers/jikan_controller.dart';
 import 'package:anithing/models/anime.dart';
 import 'package:anithing/services/jikan_service.dart';
+import 'package:anithing/widgets/animeep_tile.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,10 +10,12 @@ import 'package:transparent_image/transparent_image.dart';
 class AnimeDetailsScreen extends StatelessWidget {
   AnimeDetailsScreen({Key? key}) : super(key: key);
   final JikanController animeController = Get.find();
+  final JikanController animeepController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    animeController.getAnime();
+    // animeController.getAnime();
+    animeepController.getAnimeEpisodes();
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(animeController.isLoading.value
@@ -77,7 +80,7 @@ class AnimeDetailsScreen extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 16),
                           textAlign: TextAlign.justify,
                           expandText: 'Show more',
-                          maxLines: 8,
+                          maxLines: 5,
                           collapseText: 'Show less',
                         ),
                       ),
@@ -99,6 +102,25 @@ class AnimeDetailsScreen extends StatelessWidget {
                         ],
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        children: [
+                          Text(
+                            'Status:',
+                            style: TextStyle(
+                                color: Color(0xFF575366), fontSize: 16),
+                          ),
+                          SizedBox(width: 3),
+                          Text(
+                            animeController.anime!.status,
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ],
+                      ),
+                    ),
+                    // Text(animeepController.animeep)
+                    // AnimeEpisodesTile()
                   ],
                 ),
               );

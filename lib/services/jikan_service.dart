@@ -1,3 +1,4 @@
+import 'package:anithing/models/anime_episodes.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/anime.dart';
@@ -34,6 +35,23 @@ class AnimeService {
 // 2. Anime Episodes: /anime/{int:id}/episode
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
+String animeEp = "https://api.jikan.moe/v3/anime/id/episodes";
+
+Future<List<dynamic>> fetchAnimeEpisodes(int id) async {
+  try {
+    Uri uri = Uri.parse(animeEp + id.toString());
+    print(uri.toString());
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+      return listAnimeEpisodesFromJsonString(jsonString);
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw (e);
+  }
+}
 
 // Ed ==============================
 // 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D

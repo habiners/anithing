@@ -1,141 +1,33 @@
-import 'dart:convert';
+import "dart:convert" as converter;
 
-AnimeEpisodes detailsFromJson(String str) =>
-    AnimeEpisodes.fromJson(json.decode(str));
-
-String detailsToJson(AnimeEpisodes data) => json.encode(data.toJson());
+List<AnimeEpisodes> listAnimeEpisodesFromJsonString(String jsonString) {
+  List<dynamic> jsonMap = converter.jsonDecode(jsonString)['episodes'];
+  print('----JSON-----');
+  print(jsonMap);
+  return List<AnimeEpisodes>.from(
+    jsonMap.map(
+      (jsonItem) => AnimeEpisodes.fromJson(jsonItem),
+    ),
+  );
+}
 
 class AnimeEpisodes {
-  int malId;
-  String url;
-  String imageUrl;
+  int episode_id;
   String title;
-  // String type;
-  // String source;
-  num? episodes;
-  // String status;
-  // bool airing;
   Aired aired;
-  // String duration;
-  String rating;
-  num score;
-  // int scoredBy;
-  // int rank;
-  // int popularity;
-  // int members;
-  // int favorites;
-  String? synopsis;
-  // dynamic background;
-  // String premiered;
-  // String broadcast;
-  // Related related;
-  // List<Genre> producers;
-  // List<Genre> licensors;
-  // List<Genre> studios;
-  List<Genre> genres;
 
   AnimeEpisodes({
-    required this.malId,
-    required this.url,
-    required this.imageUrl,
+    required this.episode_id,
     required this.title,
-    // required this.type,
-    // required this.source,
-    required this.episodes,
-    // required this.status,
-    // required this.airing,
     required this.aired,
-    // required this.duration,
-    required this.rating,
-    required this.score,
-    // required this.scoredBy,
-    // required this.rank,
-    // required this.popularity,
-    // required this.members,
-    // required this.favorites,
-    required this.synopsis,
-    // this.background,
-    // required this.premiered,
-    // required this.broadcast,
-    // required this.related,
-    // required this.producers,
-    // required this.licensors,
-    // required this.studios,
-    required this.genres,
   });
 
   factory AnimeEpisodes.fromJson(Map<String, dynamic> json) =>
       new AnimeEpisodes(
-        malId: json["mal_id"],
-        url: json["url"],
-        imageUrl: json["image_url"],
+        episode_id: json["episode_id"],
         title: json["title"] ?? 'No title',
-        // titleEnglish: json["title_english"],
-        // titleJapanese: json["title_japanese"],
-        // titleSynonyms:
-        //     new List<dynamic>.from(json["title_synonyms"].map((x) => x)),
-        // type: json["type"],
-        // source: json["source"],
-        episodes: json["episodes"] ?? 0,
-        // status: json["status"],
-        // airing: json["airing"],
         aired: Aired.fromJson(json["aired"]),
-        // duration: json["duration"],
-        rating: json["rating"],
-        score: json["score"] ?? 0,
-        // scoredBy: json["scored_by"],
-        // rank: json["rank"],
-        // popularity: json["popularity"],
-        // members: json["members"],
-        // favorites: json["favorites"],
-        synopsis: json["synopsis"] ?? 'No Synopsis',
-        // background: json["background"],
-        // premiered: json["premiered"],
-        // broadcast: json["broadcast"],
-        // related: Related.fromJson(json["related"]),
-        // producers: new List<Genre>.from(
-        //     json["producers"].map((x) => Genre.fromJson(x))),
-        // licensors: new List<Genre>.from(
-        //     json["licensors"].map((x) => Genre.fromJson(x))),
-        // studios:
-        //     new List<Genre>.from(json["studios"].map((x) => Genre.fromJson(x))),
-        genres:
-            new List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
       );
-
-  Map<String, dynamic> toJson() => {
-        "mal_id": malId,
-        "url": url,
-        "image_url": imageUrl,
-        // "trailer_url": trailerUrl,
-        "title": title,
-        // "title_english": titleEnglish,
-        // "title_japanese": titleJapanese,
-        // "title_synonyms": new List<dynamic>.from(titleSynonyms.map((x) => x)),
-        // "type": type,
-        // "source": source,
-        "episodes": episodes,
-        // "status": status,
-        // "airing": airing,
-        // "aired": aired.toJson(),
-        // "duration": duration,
-        "rating": rating,
-        "score": score,
-        // "scored_by": scoredBy,
-        // "rank": rank,
-        // "popularity": popularity,
-        // "members": members,
-        // "favorites": favorites,
-        // "synopsis": synopsis,
-        // "background": background,
-        // "premiered": premiered,
-        // "broadcast": broadcast,
-        // "related": related.toJson(),
-        // "producers": new List<dynamic>.from(producers.map((x) => x.toJson())),
-        // "licensors": new List<dynamic>.from(licensors.map((x) => x.toJson())),
-        // "studios": new List<dynamic>.from(studios.map((x) => x.toJson())),
-        "genres": new List<dynamic>.from(genres.map((x) => x.toJson())),
-      };
 }
 
 class Aired {
@@ -207,50 +99,5 @@ class From {
         "day": day == null ? null : day,
         "month": month == null ? null : month,
         "year": year == null ? null : year,
-      };
-}
-
-class Genre {
-  int malId;
-  String type;
-  String name;
-  String url;
-
-  Genre({
-    required this.malId,
-    required this.type,
-    required this.name,
-    required this.url,
-  });
-
-  factory Genre.fromJson(Map<String, dynamic> json) => new Genre(
-        malId: json["mal_id"],
-        type: json["type"],
-        name: json["name"],
-        url: json["url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "mal_id": malId,
-        "type": type,
-        "name": name,
-        "url": url,
-      };
-}
-
-class Related {
-  List<Genre> adaptation;
-
-  Related({
-    required this.adaptation,
-  });
-
-  factory Related.fromJson(Map<String, dynamic> json) => new Related(
-        adaptation: new List<Genre>.from(
-            json["Adaptation"].map((x) => Genre.fromJson(x))),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "Adaptation": new List<dynamic>.from(adaptation.map((x) => x.toJson())),
       };
 }
