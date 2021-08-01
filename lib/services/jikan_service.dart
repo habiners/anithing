@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:anithing/models/manga.dart';
 import 'package:http/http.dart' as http;
 
 import '../models/anime.dart';
@@ -16,7 +19,23 @@ Anime fetchAnime(int animeId) {
 // 2. Anime Episodes: /anime/{int:id}/episode
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
+class MangaService {
+  static Future<Manga> manga(int id) async {
+    final response = await http
+        .get(Uri.parse('https://api.jikan.moe/v3/manga/' + id.toString()));
+    // Manga? a;
+    if (response.statusCode == 200) {
+      // If the server did return a 200 OK response,
+      // then parse the JSON.
 
+      return Manga.fromJson(jsonDecode(response.body));
+    } else {
+      // If the server did not return a 200 OK response,
+      // then throw an exception.
+      throw Exception('Failed to load Manga');
+    }
+  }
+}
 // Ed ==============================
 // 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D
 // Sample: https://api.jikan.moe/v3/manga/1 - Gets Monster Manga Info
@@ -25,6 +44,37 @@ Anime fetchAnime(int animeId) {
 // Samples:
 // https://api.jikan.moe/v3/top/anime/1/ - Gets top anime, page 1
 // https://api.jikan.moe/v3/top/manga/2/ - Gets top manga, page 2
+Future<List<dynamic>> getTopMangaList() async {
+  try {
+    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/manga/1');
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+
+      return topMangaListConverter(jsonString, 'top');
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw e;
+  }
+}
+
+Future<List<dynamic>> getTopAnimeList() async {
+  try {
+    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/anime/1');
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+
+      return topAnimeListConverter(jsonString, 'top');
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw e;
+  }
+}
 
 // Javin ==============================
 // 5. Browse Anime/Manga By Genre https://api.jikan.moe/v3/genre/%7Bstring:anime%7C%7Cmanga%7D/%7Bint:page%7D
@@ -53,7 +103,8 @@ Future<List<dynamic>> fetchGenreQuery(String genreId, String mode) async {
 
 // 6. Search Anime and Manga (LISOD NI)
 // Sample: https://api.jikan.moe/v3/search/anime?q=Fate/Zero&page=1
-Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
+Future<List<dynamic>> fetchSearchQuery(
+    String searchQueryParameters, String mode) async {
   try {
     Uri uri = Uri.parse('$apiBasePath/search/$searchQueryParameters');
     print(uri.toString());
