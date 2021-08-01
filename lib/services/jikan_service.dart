@@ -35,11 +35,13 @@ class AnimeService {
 // 2. Anime Episodes: /anime/{int:id}/episode
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
-String animeEp = "https://api.jikan.moe/v3/anime/id/episodes";
+// String animeEp = "https://api.jikan.moe/v3/anime/id/episodes";
 
 Future<List<dynamic>> fetchAnimeEpisodes(int id) async {
   try {
-    Uri uri = Uri.parse(animeEp + id.toString());
+    Uri uri =
+        // Uri.parse("https://api.jikan.moe/v3/anime/${id.toString()}/episodes");
+        Uri.parse(aniPath + id.toString() + "/episodes");
     print(uri.toString());
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
