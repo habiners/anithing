@@ -20,58 +20,50 @@ class TopMangaTile extends StatelessWidget {
         jikanController.isLoading.value = true;
         Get.to(() => MangaDetails());
       },
-      child: Expanded(
-        child: Card(
-          child: Container(
-            height: 120,
-            color: odd ? Colors.grey[900] : Colors.blueGrey[600],
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                    width: 80,
-                    height: 100,
-                    child: Container(
-                      height: 462,
-                      width: 400,
-                      child: CachedNetworkImage(
-                        fit: BoxFit.cover,
-                        imageUrl: topMangaModel.imageUrl,
-                      ),
-                    )),
-                SizedBox(width: 4),
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 4),
-                    child: Column(
+      child: Container(
+        height: 120,
+        color: odd ? Colors.grey[900] : Colors.blueGrey[600],
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                width: 80,
+                height: 100,
+                child: Container(
+                  height: 462,
+                  width: 400,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: topMangaModel.imageUrl,
+                  ),
+                )),
+            SizedBox(width: 4),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 4),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CustomText(text: topMangaModel.title, weight: FontWeight.bold),
+                    SizedBox(height: 4),
+                    Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CustomText(text: topMangaModel.title, weight: FontWeight.bold),
-                        SizedBox(height: 4),
-                        SizedBox(height: 4),
                         Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Row(children: [
-                              CustomText(text: "Score: " + topMangaModel.score.toString(), weight: FontWeight.bold),
-                            ]),
-                            Row(
-                              children: [
-                                CustomText(text: "Volumes: " + topMangaModel.volumes.toString(), weight: FontWeight.bold),
-                              ],
-                            ),
+                            CustomText(text: "Score: " + topMangaModel.score.toString(), weight: FontWeight.bold),
                           ],
                         ),
                       ],
                     ),
-                  ),
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
