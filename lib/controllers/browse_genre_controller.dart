@@ -17,10 +17,6 @@ class BrowseGenreController extends GetxController {
       print("=====Start of Genre Query=====");
       if (mode.value == "Anime") {
         animeGenreResults.value = await fetchGenreQuery((selectedGenre.value + 1).toString(), "anime") as List<AnimeSearchResult>;
-        // var response = await fetchGenreQuery((selectedGenre.value + 1).toString(), "anime") as List<AnimeSearchResult>;
-        // print(response);
-        // print(response.runtimeType);
-
       } else
         mangaGenreResults.value = await fetchGenreQuery((selectedGenre.value + 1).toString(), "manga") as List<MangaSearchResult>;
       print(animeGenreResults.first);

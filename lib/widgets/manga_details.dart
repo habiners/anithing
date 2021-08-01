@@ -1,17 +1,13 @@
-// import 'package:anithing/controllers/jikan_controller.dart';
-import 'package:anithing/controllers/jikan_controller.dart';
-import 'package:anithing/models/manga.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
-// import 'package:anithing/services/jikan_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-// import 'package:get/get.dart';
-// import 'package:expandable_text/expandable_text.dart';
+
+import '../controllers/jikan_controller.dart';
 
 class MangaDetails extends StatelessWidget {
   MangaDetails({Key? key}) : super(key: key);
-  JikanController jikanController = Get.find();
+  final JikanController jikanController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -58,10 +54,7 @@ class MangaDetails extends StatelessWidget {
                         ),
                         child: Text(
                           jikanController.manga!.title,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 30,
-                              fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.bold),
                         ),
                       ),
                     ),
@@ -80,14 +73,11 @@ class MangaDetails extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 10, left: 10),
-                      child: Text('Status: ' + jikanController.manga!.status,
-                          style: TextStyle(color: Colors.white, fontSize: 16)),
+                      child: Text('Status: ' + jikanController.manga!.status, style: TextStyle(color: Colors.white, fontSize: 16)),
                     ),
                     Padding(
                       padding: EdgeInsets.only(bottom: 10, left: 10),
-                      child: Text(
-                          'Number of Volumes: ' +
-                              jikanController.manga!.volumes.toString(),
+                      child: Text('Number of Volumes: ' + jikanController.manga!.volumes.toString(),
                           style: TextStyle(color: Colors.white, fontSize: 16)),
                     ),
                   ],

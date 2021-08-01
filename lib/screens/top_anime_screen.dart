@@ -1,13 +1,14 @@
-import 'package:anithing/controllers/jikan_controller.dart';
-import 'package:anithing/widgets/scaffold_appbar.dart';
-import 'package:anithing/widgets/scaffold_drawer.dart';
-import 'package:anithing/widgets/top_anime.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../controllers/jikan_controller.dart';
+import '../widgets/scaffold_appbar.dart';
+import '../widgets/scaffold_drawer.dart';
+import '../widgets/top_anime_tile.dart';
+
 class TopAnimeListScreen extends StatelessWidget {
   TopAnimeListScreen({Key? key}) : super(key: key);
-  JikanController jikanController = Get.find();
+  final JikanController jikanController = Get.find();
   @override
   Widget build(BuildContext context) {
     jikanController.topAnimeController();
@@ -23,10 +24,7 @@ class TopAnimeListScreen extends StatelessWidget {
                 child: CircularProgressIndicator(),
               )
             : ListView(children: [
-                for (int i = 0; i < jikanController.topAnime.length; i++)
-                  TopAnime(
-                      topAnimeModel: jikanController.topAnime[i],
-                      odd: i % 2 == 0)
+                for (int i = 0; i < jikanController.topAnime.length; i++) TopAnimeTile(topAnimeModel: jikanController.topAnime[i], odd: i % 2 == 0)
               ]);
       }),
     );

@@ -1,8 +1,8 @@
-import 'package:anithing/constants/controllers.dart';
-import 'package:anithing/constants/styles.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../constants/controllers.dart';
+import '../constants/styles.dart';
 import 'custom_text.dart';
 
 class DrawerTile extends StatelessWidget {
