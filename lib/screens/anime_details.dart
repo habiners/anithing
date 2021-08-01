@@ -5,7 +5,6 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class AnimeDetailsScreen extends StatelessWidget {
   AnimeDetailsScreen({Key? key}) : super(key: key);
