@@ -1,31 +1,25 @@
 import 'package:anithing/controllers/jikan_controller.dart';
-import 'package:anithing/screens/anime_details.dart';
+import 'package:anithing/models/manga.dart';
+import 'package:anithing/screens/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../constants/styles.dart';
-import '../models/anime_search_result.dart';
-import '../screens/home_screen.dart';
 import 'custom_text.dart';
+import 'manga_details.dart';
 
-class AnimeSearchTile extends StatelessWidget {
-  AnimeSearchTile({Key? key, required this.anime, this.odd = false})
+class TopAnime extends StatelessWidget {
+  TopAnime({Key? key, this.odd = false, required this.topAnimeModel})
       : super(key: key);
-  final AnimeSearchResult anime;
-  final JikanController animeController = Get.find();
+  final JikanController jikanController = Get.find();
   final bool odd;
-
+  final TopAnimeModel topAnimeModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
-        animeController.id = anime.malId;
-        Get.to(() => AnimeDetailsScreen());
-      },
+      onTap: () {},
       child: Container(
         height: 120,
-        color: odd ? blackCoffeeColor : independenceColor,
+        color: odd ? Colors.grey[900] : Colors.blueGrey[600],
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -34,7 +28,14 @@ class AnimeSearchTile extends StatelessWidget {
             Container(
                 width: 80,
                 height: 100,
-                child: CachedNetworkImage(imageUrl: anime.imageUrl)),
+                child: Container(
+                  height: 462,
+                  width: 400,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.cover,
+                    imageUrl: topAnimeModel.imageUrl,
+                  ),
+                )),
             SizedBox(width: 4),
             Expanded(
               child: Padding(
@@ -43,11 +44,8 @@ class AnimeSearchTile extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    CustomText(text: anime.title, weight: FontWeight.bold),
                     CustomText(
-                        text: anime.synopsis,
-                        textAlign: TextAlign.left,
-                        maxLines: 3),
+                        text: topAnimeModel.title, weight: FontWeight.bold),
                     SizedBox(height: 4),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -55,17 +53,9 @@ class AnimeSearchTile extends StatelessWidget {
                         Row(
                           children: [
                             CustomText(
-                                text: "Score: ", weight: FontWeight.bold),
-                            CustomText(text: "${anime.score}"),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            CustomText(
-                                text: "Episodes: ", weight: FontWeight.bold),
-                            CustomText(
                                 text:
-                                    "${anime.episodes.toString().padLeft(4)}"),
+                                    "Score: " + topAnimeModel.score.toString(),
+                                weight: FontWeight.bold),
                           ],
                         ),
                       ],

@@ -25,8 +25,11 @@ class ScaffoldDrawer extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                     children: [
-                      TextSpan(text: "Ani", style: TextStyle(color: mintCreamColor)),
-                      TextSpan(text: "Thing", style: TextStyle(color: blackCoffeeColor)),
+                      TextSpan(
+                          text: "Ani", style: TextStyle(color: mintCreamColor)),
+                      TextSpan(
+                          text: "Thing",
+                          style: TextStyle(color: blackCoffeeColor)),
                     ],
                   ),
                 ),
@@ -59,7 +62,8 @@ class ScaffoldDrawer extends StatelessWidget {
                     title: "Browse by Genre",
                     iconData: Icons.category_outlined,
                     destinationRoute: browseGenreRoute,
-                    active: jikanController.activeRoute.value == browseGenreRoute,
+                    active:
+                        jikanController.activeRoute.value == browseGenreRoute,
                   ),
                 ],
               ),
