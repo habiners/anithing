@@ -14,12 +14,10 @@ class BrowseGenreController extends GetxController {
   Future<void> genreQuery({int page = 1}) async {
     isLoading.value = true;
     try {
-      print("=====Start of Genre Query=====");
       if (mode.value == "Anime") {
         animeGenreResults.value = await fetchGenreQuery((selectedGenre.value + 1).toString(), "anime") as List<AnimeSearchResult>;
       } else
         mangaGenreResults.value = await fetchGenreQuery((selectedGenre.value + 1).toString(), "manga") as List<MangaSearchResult>;
-      print(animeGenreResults.first);
     } on Exception catch (e) {
       print(e.toString());
       Get.snackbar("Error!", e.toString());

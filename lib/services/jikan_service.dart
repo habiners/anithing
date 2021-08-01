@@ -23,7 +23,6 @@ class AnimeService {
   static Future<Anime> fetchAnime(int? id) async {
     try {
       Uri uri = Uri.parse(aniPath + id.toString());
-      print(uri.toString());
       http.Response response = await http.get(uri);
       if (response.statusCode == 200) {
         return detailsFromJson(response.body);
@@ -43,10 +42,7 @@ class AnimeService {
 
 Future<List<dynamic>> fetchAnimeEpisodes(int id) async {
   try {
-    Uri uri =
-        // Uri.parse("https://api.jikan.moe/v3/anime/${id.toString()}/episodes");
-        Uri.parse(aniPath + id.toString() + "/episodes");
-    print(uri.toString());
+    Uri uri = Uri.parse(aniPath + id.toString() + "/episodes");
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
@@ -115,8 +111,6 @@ Future<List<dynamic>> getTopAnimeList() async {
 Future<List<dynamic>> fetchGenreQuery(String genreId, String mode) async {
   try {
     Uri uri = Uri.parse('$apiBasePath/genre/$mode/$genreId');
-    print(uri.toString());
-    print(mode);
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
@@ -137,8 +131,6 @@ Future<List<dynamic>> fetchGenreQuery(String genreId, String mode) async {
 Future<List<dynamic>> fetchSearchQuery(String searchQueryParameters, String mode) async {
   try {
     Uri uri = Uri.parse('$apiBasePath/search/$searchQueryParameters');
-    print(uri.toString());
-    print(mode);
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;
