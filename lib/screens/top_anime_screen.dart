@@ -1,10 +1,9 @@
-import 'package:anithing/constants/styles.dart';
 import 'package:anithing/controllers/jikan_controller.dart';
+import 'package:anithing/widgets/scaffold_appbar.dart';
+import 'package:anithing/widgets/scaffold_drawer.dart';
 import 'package:anithing/widgets/top_anime.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'home_screen.dart';
 
 class TopAnimeListScreen extends StatelessWidget {
   TopAnimeListScreen({Key? key}) : super(key: key);
@@ -13,25 +12,11 @@ class TopAnimeListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     jikanController.topAnimeController();
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: royalBlueLightColor,
-        title: Text(
-          'Top Manga',
-          style: TextStyle(
-            fontSize: 24,
-            fontFamily: 'Montserrat',
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-          ),
-          onPressed: () => Get.to(
-            HomeScreen(),
-          ),
-        ),
+      appBar: createScaffoldAppBar(
+        title: 'Top Anime',
+        actions: [],
       ),
+      drawer: ScaffoldDrawer(),
       body: Obx(() {
         return jikanController.isLoading.value
             ? Center(

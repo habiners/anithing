@@ -46,7 +46,7 @@ class MangaService {
 // https://api.jikan.moe/v3/top/manga/2/ - Gets top manga, page 2
 Future<List<dynamic>> getTopMangaList() async {
   try {
-    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/manga/2');
+    Uri uri = Uri.parse('https://api.jikan.moe/v3/top/manga/1');
     http.Response response = await http.get(uri);
     if (response.statusCode == 200) {
       String jsonString = response.body;

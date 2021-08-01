@@ -1,6 +1,7 @@
 import 'package:anithing/controllers/jikan_controller.dart';
 import 'package:anithing/models/manga.dart';
 import 'package:anithing/screens/home_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'custom_text.dart';
@@ -30,9 +31,9 @@ class TopAnime extends StatelessWidget {
                 child: Container(
                   height: 462,
                   width: 400,
-                  child: Image.network(
-                    topAnimeModel.imageUrl,
+                  child: CachedNetworkImage(
                     fit: BoxFit.cover,
+                    imageUrl: topAnimeModel.imageUrl,
                   ),
                 )),
             SizedBox(width: 4),

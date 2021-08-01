@@ -1,6 +1,7 @@
 // import 'package:anithing/controllers/jikan_controller.dart';
 import 'package:anithing/controllers/jikan_controller.dart';
 import 'package:anithing/models/manga.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:expandable_text/expandable_text.dart';
 // import 'package:anithing/services/jikan_service.dart';
 import 'package:flutter/material.dart';
@@ -32,9 +33,9 @@ class MangaDetails extends StatelessWidget {
                   : Container(
                       height: 462,
                       width: 400,
-                      child: Image.network(
-                        jikanController.manga!.imageUrl,
+                      child: CachedNetworkImage(
                         fit: BoxFit.cover,
+                        imageUrl: jikanController.manga!.imageUrl,
                       ),
                     );
             },
