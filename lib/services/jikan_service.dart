@@ -1,3 +1,4 @@
+import 'package:anithing/models/anime_episodes.dart';
 import 'dart:convert';
 
 import 'package:anithing/models/manga.dart';
@@ -12,13 +13,53 @@ String apiBasePath = "https://api.jikan.moe/v3";
 // Zath ==============================
 // 1. Anime Information: /anime/{int:id}
 // Sample: https://api.jikan.moe/v3/anime/21/ - Gets One Piece Anime Info
-Anime fetchAnime(int animeId) {
-  return Anime();
+// Anime fetchAnime(int animeId) {
+//   return Anime();
+// }
+String aniPath = "https://api.jikan.moe/v3/anime/";
+
+class AnimeService {
+  static Future<Anime> fetchAnime(int? id) async {
+    try {
+      Uri uri = Uri.parse(aniPath + id.toString());
+      print(uri.toString());
+      http.Response response = await http.get(uri);
+      if (response.statusCode == 200) {
+        return detailsFromJson(response.body);
+      } else {
+        throw Exception('Failed to load!');
+      }
+    } catch (e) {
+      throw e;
+    }
+  }
 }
 
 // 2. Anime Episodes: /anime/{int:id}/episode
 // Sample: https://api.jikan.moe/v3/anime/21/episodes
 // - Gets One Piece Anime Episodes
+// String animeEp = "https://api.jikan.moe/v3/anime/id/episodes";
+
+Future<List<dynamic>> fetchAnimeEpisodes(int id) async {
+  try {
+    Uri uri =
+        // Uri.parse("https://api.jikan.moe/v3/anime/${id.toString()}/episodes");
+        Uri.parse(aniPath + id.toString() + "/episodes");
+    print(uri.toString());
+    http.Response response = await http.get(uri);
+    if (response.statusCode == 200) {
+      String jsonString = response.body;
+      return listAnimeEpisodesFromJsonString(jsonString);
+    } else {
+      return [];
+    }
+  } catch (e) {
+    throw (e);
+  }
+}
+// Ed ==============================
+// 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D
+// Sample: https://api.jikan.moe/v3/manga/1 - Gets Monster Manga Info
 class MangaService {
   static Future<Manga> manga(int id) async {
     final response = await http
@@ -36,9 +77,6 @@ class MangaService {
     }
   }
 }
-// Ed ==============================
-// 3. Manga Information: https://api.jikan.moe/v3/manga/%7Bint:id%7D
-// Sample: https://api.jikan.moe/v3/manga/1 - Gets Monster Manga Info
 
 // 4. Top Manga & Anime (with multiple pages): https://api.jikan.moe/v3/top/%7Bstring:anime%7C%7Cmanga%7D/%7Bint:page%7D
 // Samples:
