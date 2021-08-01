@@ -13,7 +13,7 @@ class AnimeDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    animeepController.getAnimeEpisodes();
+    animeepController.getAnime();
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text(animeController.isLoading.value

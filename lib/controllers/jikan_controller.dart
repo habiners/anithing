@@ -17,7 +17,7 @@ class JikanController extends GetxController {
   Anime? anime;
   List<AnimeEpisodes>? animeep;
 
-  void getAnimeEpisodes() async {
+  void getAnime() async {
     isLoading.value = true;
     anime = await AnimeService.fetchAnime(id!);
     animeep = await fetchAnimeEpisodes(id!) as List<AnimeEpisodes>;
